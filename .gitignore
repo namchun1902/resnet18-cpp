@@ -1,0 +1,5 @@
+# Bỏ qua tệp tin thực thi
+*.exe
+
+# Bỏ qua tệp tin dữ liệu và trọng số nhị phân
+*.bin
