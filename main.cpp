@@ -21,7 +21,7 @@ int main() {
     #endif
 
     std::cout << "========================================================\n";
-    std::cout << "      CHƯƠNG TRÌNH SUY LUẬN RESNET-18 (C++ THUẦN)\n";
+    std::cout << "      CHƯƠNG TRÌNH SUY LUẬN RESNET-18 (C++)\n";
     std::cout << "========================================================\n\n";
 
     // 2. Khởi tạo kiến trúc mạng
@@ -57,8 +57,8 @@ int main() {
     std::cout << "                BẮT ĐẦU CHẠY SUY LUẬN                   \n";
     std::cout << "========================================================\n";
 
-    // Chọn ảnh ở vị trí số 0 trong tập test
-    int test_idx = 0; 
+    // Chọn ảnh ở vị trí số 1 trong tập test
+    int test_idx = 1; 
     Image& test_img = dataset[test_idx];
 
     std::cout << "[ACTION] Đang thực hiện lan truyền tiến (Forward Pass) cho ảnh số " << test_idx << "...\n";
@@ -69,8 +69,8 @@ int main() {
 
     // In kết quả đối chiếu
     std::cout << "\n---------------- KẾT QUẢ ----------------\n";
-    std::cout << "  -> Nhãn thực tế (Ground Truth) : " << class_names[true_class] << "\n";
-    std::cout << "  -> Mô hình dự đoán (Prediction): " << class_names[predicted_class] << "\n";
+    std::cout << "  -> Nhãn thực tế : " << class_names[true_class] << "\n";
+    std::cout << "  -> Mô hình dự đoán : " << class_names[predicted_class] << "\n";
     std::cout << "-----------------------------------------\n";
 
     if (predicted_class == true_class) {
@@ -79,6 +79,6 @@ int main() {
         std::cout << "  => [KẾT QUẢ] Nhận diện SAI.\n";
     }
 
-    std::cout << "\n[DONE] Quá trình thực thi hoàn tất.\n";
+    std::cout << "\n[DONE] Quá trình chạy hoàn tất.\n";
     return 0;
 }

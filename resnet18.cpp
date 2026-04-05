@@ -162,6 +162,6 @@ bool ResNet18::load_weight(const std::string& filepath) {
     }
 
     file.close();
-    std::cout << "HOÀN TẤT: Não bộ ResNet-18 đã sẵn sàng trực chiến!\n";
+    std::cout << "HOÀN TẤT: Resnet-18 đã sẵn sàng!\n";
     return true;
 }
