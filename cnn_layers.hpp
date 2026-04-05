@@ -152,7 +152,7 @@ struct GlobalAvgPool {
 
 /**
  * @struct Linear (Full Connected)
- * @brief  Lớp kết nối đầy đủ
+ * @brief  Fully Connected
  * @details Đóng vai trò phân loại ở cuối mạng
  * Kết nối mọi đặc trưng của ảnh vào một vector 1D
  */
