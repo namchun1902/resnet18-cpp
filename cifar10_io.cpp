@@ -49,9 +49,9 @@ std::vector<Image> read_cifar10(const std::string& filepath) {
                 for (int w = 0; w < 32; w++){
                     img.data[c][h][w] = static_cast<float>(buffer[index]) / 255.0f;
                     index++;
+                }
             }
         }
-    }
 
     //Đẩy ảnh đã xử lý xong vào cuối dataset
     dataset.push_back(std::move(img));
