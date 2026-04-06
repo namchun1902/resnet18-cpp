@@ -72,13 +72,16 @@ int ResNet18::predict(const Tensor3D& input) const{
     float max_score = score[0];
 
     for(int i = 0; i < score.size(); ++i) {
+        std::cout << score[i] << " ";
         if (score[i] > max_score) {
             max_score = score[i];
             best_class = i;
         }
+
     }
     return best_class;
 }
+
 
 //2. Các hàm phụ trợ (dùng để đọc dữ liệu từ file vào mảng)
 // Hàm hút trọng số cho Conv2D

@@ -43,6 +43,9 @@ std::vector<Image> read_cifar10(const std::string& filepath) {
         file.read(reinterpret_cast<char*>(buffer), image_size);
 
         //Đổ và chuẩn hoá dữ liệu ảnh vào img.data
+        // Thêm Mean và Std chuẩn của tập CIFAR-10
+        
+
         int index = 0;
         for (int c = 0; c < 3; c++){
             for (int h = 0; h < 32; h++){

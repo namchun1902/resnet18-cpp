@@ -57,27 +57,25 @@ int main() {
     std::cout << "                BẮT ĐẦU CHẠY SUY LUẬN                   \n";
     std::cout << "========================================================\n";
 
-    // Chọn ảnh ở vị trí số 1 trong tập test
-    int test_idx = 1; 
+    // Chọn ảnh ở vị trí số trong tập test
+    int test_idx = 10; 
     Image& test_img = dataset[test_idx];
 
     std::cout << "[ACTION] Đang thực hiện lan truyền tiến (Forward Pass) cho ảnh số " << test_idx << "...\n";
     
     // Đưa ảnh qua mạng để lấy dự đoán
-    int predicted_class = model.predict(test_img.data);
+    // model.predict(test_img.data);
+    int best_class = model.predict(test_img.data);
     int true_class = test_img.label;
+
 
     // In kết quả đối chiếu
     std::cout << "\n---------------- KẾT QUẢ ----------------\n";
+    std::cout << "  -> Mô hình dự đoán : " << class_names[best_class] << "\n";
     std::cout << "  -> Nhãn thực tế : " << class_names[true_class] << "\n";
-    std::cout << "  -> Mô hình dự đoán : " << class_names[predicted_class] << "\n";
     std::cout << "-----------------------------------------\n";
 
-    if (predicted_class == true_class) {
-        std::cout << "  => [KẾT QUẢ] Nhận diện CHÍNH XÁC!\n";
-    } else {
-        std::cout << "  => [KẾT QUẢ] Nhận diện SAI.\n";
-    }
+
 
     std::cout << "\n[DONE] Quá trình chạy hoàn tất.\n";
     return 0;
