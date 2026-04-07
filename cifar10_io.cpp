@@ -44,13 +44,16 @@ std::vector<Image> read_cifar10(const std::string& filepath) {
 
         //Đổ và chuẩn hoá dữ liệu ảnh vào img.data
         // Thêm Mean và Std chuẩn của tập CIFAR-10
-        
+        const float mean[3] = {0.4914f, 0.4822f, 0.4465f};
+        const float std[3] = {0.2471f, 0.2435f, 0.2616f};
 
         int index = 0;
         for (int c = 0; c < 3; c++){
             for (int h = 0; h < 32; h++){
                 for (int w = 0; w < 32; w++){
-                    img.data[c][h][w] = static_cast<float>(buffer[index]) / 255.0f;
+                    float pixel = static_cast<float>(buffer[index]) / 255.0f;
+                    //Chuan hoa pixel
+                    img.data[c][h][w] = (pixel - mean[c]) / std[c];
                     index++;
                 }
             }

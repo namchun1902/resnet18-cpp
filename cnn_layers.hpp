@@ -41,6 +41,15 @@ struct Conv2D{
     void forward(const Tensor3D& input, Tensor3D& output) const;
 };
 
+//Maxpool2D
+struct MaxPool2D{
+    const int kernel_size = 3;
+    const int stride = 2;
+    const int padding = 1;
+    
+    void forward(const Tensor3D& input, Tensor3D& output) const;
+};
+
 
 /**
  * @struct BatchNorm

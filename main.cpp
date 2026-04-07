@@ -58,7 +58,7 @@ int main() {
     std::cout << "========================================================\n";
 
     // Chọn ảnh ở vị trí số trong tập test
-    int test_idx = 10; 
+    int test_idx = 100; 
     Image& test_img = dataset[test_idx];
 
     std::cout << "[ACTION] Đang thực hiện lan truyền tiến (Forward Pass) cho ảnh số " << test_idx << "...\n";

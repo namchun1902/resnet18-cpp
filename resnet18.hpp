@@ -14,6 +14,7 @@ struct ResNet18 {
     Conv2D conv1;
     BatchNorm bn1;
     ReLU relu;
+    MaxPool2D maxpool;
 
     //2. Cụm chính
     // Bao gồm 4 tầng, mỗi tầng 2 resblock

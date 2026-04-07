@@ -194,3 +194,38 @@ void ResidualBlock::forward(const Tensor3D& input, Tensor3D& output) const {
     adder.forward(bn2_out, shortcut_out, output);
     relu2.forward(output);
 }
+
+//Hàm lan truyền tiến MaxPool2D
+void MaxPool2D::forward(const Tensor3D& input, Tensor3D& output) const {
+    int channels = input.size();
+    int h_in = input[0].size();
+    int w_in = input[0][0].size();
+
+    //Kich thuoc dau ra
+    int h_out = (h_in + 2*padding - kernel_size) / stride + 1;
+    int w_out = (w_in + 2*padding - kernel_size) / stride + 1;
+
+    output.assign(channels, Tensor2D(h_out, Tensor1D(w_out, -999.0f)));
+
+    for(int c = 0; c < channels; ++c){
+        for(int h = 0; h < h_out; ++h){
+            for(int w = 0; w < w_out; ++w){
+                float max = -999.0f;
+
+                for(int kh=0; kh<kernel_size; kh++){
+                    for(int kw=0; kw<kernel_size; kw++){
+                        int idx_h = h * stride + kh - padding;
+                        int idx_w = w * stride + kw - padding;
+                        
+                        if(idx_h >= 0 && idx_h < h_in && idx_w >= 0 && idx_w < w_in){
+                            if(input[c][idx_h][idx_w] > max){
+                                max = input[c][idx_h][idx_w];
+                            }
+                        }
+                    }
+                }
+                output[c][h][w] = max;
+            }
+        }
+    }
+}

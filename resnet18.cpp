@@ -8,6 +8,7 @@ ResNet18::ResNet18(int num_classes)
     //Khởi tạo mạng đầu vào: 3 kênh vào, 64 kênh ra, kernel 3, stride 1, padding 1
     : conv1(3, 64, 3, 1, 1),
       bn1(64),
+      //Không cần khởi tạo MaxPool2D
 
       // Layer 1: Giữ nguyên 64 kênh, stride = 1
       layer1_block1(64, 64, 1),
@@ -33,15 +34,17 @@ ResNet18::ResNet18(int num_classes)
 
 void ResNet18::forward(const Tensor3D& input, Tensor1D& output) const {
     //Mảng trung gian
-    Tensor3D x1, x2;
+    Tensor3D x1, x2, x3;
 
     //Cụm đầu vào
     conv1.forward(input, x1);
     bn1.forward(x1, x2);
     relu.forward(x2);
 
+    maxpool.forward(x2, x3);
+
     //Layer1
-    layer1_block1.forward(x2, x1);
+    layer1_block1.forward(x3, x1);
     layer1_block2.forward(x1, x2);
 
     //Layer2
@@ -77,7 +80,7 @@ int ResNet18::predict(const Tensor3D& input) const{
             max_score = score[i];
             best_class = i;
         }
-
+        if(i == 9) std::cout << std::endl;
     }
     return best_class;
 }
